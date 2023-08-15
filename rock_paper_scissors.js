@@ -56,6 +56,13 @@ function getComputerChoice(){
 // }
 
 // playGame(getPlayerChoice,getComputerChoice);
+const emoji={
+    "rock":'🪨',
+    "paper":'📃',
+    "scissors":'✂️'
+};
+let emo_user=document.getElementsByClassName("emoji")[0];
+let emo_comp=document.getElementsByClassName("emoji")[1];
 let p_txt=document.getElementsByClassName("playerChoice")[0];
 let c_txt=document.getElementsByClassName("computerChoice")[0];
 let user_pts=document.getElementsByClassName("user")[0];
@@ -86,14 +93,21 @@ function playGame(pChoice,cChoice)
 }
 
 btns.forEach((button)=>{
-    console.log(`h1->value->${winner.innerHTML}`);
     button.addEventListener("click",()=>{
     let playerChoice=button.value;
     let computerChoice=getComputerChoice();
-    p_txt.innerHTML+=`[${playerChoice}] `;
-    c_txt.innerHTML+=`[${computerChoice}] `;
+    if(user==0 && comp==0){
+        winner.innerHTML="";
+        user_pts.innerHTML="";
+        comp_pts.innerHTML="";
+        p_txt.innerHTML="USER:";
+        c_txt.innerHTML="COMP:";
+        }
+    p_txt.innerHTML+=`${emoji[playerChoice]} `;
+    c_txt.innerHTML+=`${emoji[computerChoice]} `;
+    emo_user.innerHTML=`${emoji[playerChoice]}`;
+    emo_comp.innerHTML=`${emoji[computerChoice]}`;
     if(user!=5 && comp!=5){
-    winner.innerHTML="";
     playGame(playerChoice,computerChoice);
     user_pts.innerHTML=`User Points->${user}`;
     comp_pts.innerHTML=`Computer Points->${comp}`;
@@ -104,10 +118,6 @@ btns.forEach((button)=>{
         console.log(`h1->value->${winner.innerHTML}`);
         user=0;
         comp=0;
-        user_pts.innerHTML="";
-        comp_pts.innerHTML="";
-        p_txt.innerHTML="";
-        c_txt.innerHTML="";
     }
     else if(user==5)
     {
@@ -115,10 +125,6 @@ btns.forEach((button)=>{
         console.log(`h1->value->${winner.innerHTML}`);
         user=0;
         comp=0;
-        user_pts.innerHTML="";
-        comp_pts.innerHTML="";
-        p_txt.innerHTML="";
-        c_txt.innerHTML="";
     }
     else if(comp==5)
     {
@@ -126,10 +132,6 @@ btns.forEach((button)=>{
         console.log(`h1->value->${winner.innerHTML}`);
         user=0;
         comp=0;
-        user_pts.innerHTML="";
-        comp_pts.innerHTML="";
-        p_txt.innerHTML="";
-        c_txt.innerHTML="";
     }
 }); 
 });
